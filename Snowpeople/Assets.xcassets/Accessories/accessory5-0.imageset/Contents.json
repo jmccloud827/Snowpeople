@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "transparent-accessory5.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

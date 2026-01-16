@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "transparent-arm6.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
