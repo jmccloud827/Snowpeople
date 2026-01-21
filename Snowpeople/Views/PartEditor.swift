@@ -200,17 +200,22 @@ struct PartEditor: View {
                 DragGesture(minimumDistance: 0)
                     .onChanged { gesture in
                         let maxTranslation = max(gesture.translation.width, gesture.translation.height)
-                        let newWidth = currentSize.width + maxTranslation
-                        let newHeight = currentSize.height + maxTranslation
-                        guard newWidth > minimumSize && newHeight > minimumSize else {
+                            
+                        let magnification = 1 + maxTranslation / max(part.size.width, part.size.height)
+                        
+                        if currentSize.width * magnification < minimumSize || currentSize.height * magnification < minimumSize {
                             return
                         }
-                        
-                        currentSize.width = newWidth
-                        currentSize.height = newHeight
+                            
+                        currentScale = magnification
                     }
-                    .onEnded { _ in
+                    .onEnded { gesture in
                         onWillUpdate()
+                        
+                        currentSize.width *= currentScale
+                        currentSize.height *= currentScale
+                        
+                        currentScale = 1
                         part.size = currentSize
                     }
             )
@@ -244,8 +249,8 @@ struct PartEditor: View {
             .gesture(
                 DragGesture(minimumDistance: 0)
                     .onChanged { gesture in
-                        let currentAngle = atan2(gesture.location.x, gesture.location.y)
-                        let startAngle = atan2(gesture.startLocation.x, gesture.startLocation.y)
+                        let currentAngle = atan2(gesture.location.x - part.size.width / 2, gesture.location.y - part.size.height / 2)
+                        let startAngle = atan2(gesture.startLocation.x - part.size.width / 2, gesture.startLocation.y - part.size.height / 2)
                         let theta = Angle(radians: startAngle - currentAngle) + part.rotation
                         currentRotation = .degrees(theta.degrees.truncatingRemainder(dividingBy: 360))
                     }
@@ -291,18 +296,29 @@ struct PartEditor: View {
     private var magnifyAndRotateGesture: some Gesture {
         MagnifyGesture(minimumScaleDelta: 0)
             .onChanged { gesture in
+                if currentSize.width * gesture.magnification < minimumSize || currentSize.height * gesture.magnification < minimumSize {
+                    return
+                }
+                
                 currentScale = gesture.magnification
             }
             .onEnded { gesture in
                 onWillUpdate()
                 currentScale = 1
+                
                 currentSize.width *= gesture.magnification
                 currentSize.height *= gesture.magnification
+                
                 part.size = currentSize
             }
             .simultaneously(with:
                 RotateGesture(minimumAngleDelta: .degrees(0))
                     .onChanged { gesture in
+                        let newRotation = part.rotation + gesture.rotation
+                        if newRotation.radians.isNaN {
+                            return
+                        }
+                        
                         currentRotation = part.rotation + gesture.rotation
                     }
                     .onEnded { _ in

@@ -20,7 +20,7 @@ struct PartLayerEditor: View {
                     
                 ForEach($image.layers.filter { $0.wrappedValue.color != nil }.enumerated(), id: \.element.id) { index, $layer in
                     if let bindedColor = Binding($layer.color) {
-                        ColorPicker("Sub-Color \(index + 1)", selection: bindedColor)
+                        ColorPicker("Layer \(index + 1)", selection: bindedColor)
                     }
                 }
             } else if let shape = part.shape {

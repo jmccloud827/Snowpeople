@@ -14,39 +14,79 @@ struct Snowperson: View {
     var body: some View {
         ZStack {
             background
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-            
-            Circle()
-                .foregroundStyle(.clear)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
-            ForEach(snowperson.parts, id: \.id) { part in
-                PartEditor(part: part, idOfPartBeingEdited: $idOfPartBeingEdited) {
-                    addUndoAction()
+                .overlay {
+                    ZStack {
+                        ForEach(snowperson.parts, id: \.id) { part in
+                            PartEditor(part: part, idOfPartBeingEdited: $idOfPartBeingEdited) {
+                                addUndoAction()
+                            }
+                        }
+                    }
                 }
-            }
             
             Rectangle()
                 .foregroundStyle(.snow)
                 .frame(height: 100)
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .bottom)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                 .zIndex(.infinity)
         }
+        .ignoresSafeArea()
         .navigationTitle(snowperson.name)
         .navigationBarTitleDisplayMode(.inline)
         .environment(snowperson)
         .toolbar {
             if canEdit {
+                if let idOfPartBeingEdited {
+                    ToolbarItemGroup(placement: .bottomBar) {
+                        Button("Move Back", systemImage: "arrowshape.turn.up.backward.fill") {
+                            snowperson.movePartBackwardByID(idOfPartBeingEdited)
+                        }
+                        .disabled(!snowperson.getCanMovePartBackwardByID(idOfPartBeingEdited))
+                        
+                        Button("Move Forward", systemImage: "arrowshape.turn.up.forward.fill") {
+                            snowperson.movePartForwardByID(idOfPartBeingEdited)
+                        }
+                        .disabled(!snowperson.getCanMovePartForwardByID(idOfPartBeingEdited))
+                    }
+                    
+                    ToolbarSpacer(.fixed, placement: .bottomBar)
+                    
+                    ToolbarItemGroup(placement: .bottomBar) {
+                        Button("Duplicate", systemImage: "plus.square.on.square.fill") {
+                            addUndoAction()
+                            self.idOfPartBeingEdited = nil
+                            guard let part = snowperson.getPartById(idOfPartBeingEdited) else {
+                                return
+                            }
+                            
+                            let copiedPart = snowperson.duplicatePart(part)
+                            self.idOfPartBeingEdited = copiedPart.id
+                        }
+                        
+                        Button("Flip Vertically", systemImage: "arrow.trianglehead.left.and.right.righttriangle.left.righttriangle.right.fill") {
+                            addUndoAction()
+                            guard let part = snowperson.getPartById(idOfPartBeingEdited) else {
+                                return
+                            }
+                            
+                            part.isFlippedOnYAxis.toggle()
+                        }
+                    }
+                }
+                
                 ToolbarSpacer(.flexible, placement: .bottomBar)
                 
                 ToolbarItem(placement: .bottomBar) {
                     Button("Add", systemImage: "plus") {
                         showNewLayerSheet = true
                     }
+                    .buttonStyle(.glassProminent)
                 }
                 
                 ToolbarItem {
                     Button("Undo", systemImage: "arrow.uturn.backward") {
+                        self.idOfPartBeingEdited = nil
                         if let lastActionParts = undoActions.popLast() {
                             redoActions.append(snowperson.parts)
                             snowperson.parts = lastActionParts
@@ -57,6 +97,7 @@ struct Snowperson: View {
                 
                 ToolbarItem {
                     Button("Redo", systemImage: "arrow.uturn.forward") {
+                        self.idOfPartBeingEdited = nil
                         if let lastActionParts = redoActions.popLast() {
                             undoActions.append(snowperson.parts)
                             snowperson.parts = lastActionParts

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		301FF22F2F1EBF8400DE879B /* CloudsAndSnowflakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301FF22E2F1EBF8400DE879B /* CloudsAndSnowflakes.swift */; };
 		302E0D2C2F16F1460083B9EA /* PartLayerEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E0D2B2F16F1460083B9EA /* PartLayerEditor.swift */; };
 		302E0D2E2F16F6620083B9EA /* SnowRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E0D2D2F16F6620083B9EA /* SnowRectangle.swift */; };
 		302E0D312F1937030083B9EA /* PartList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E0D302F1937030083B9EA /* PartList.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		301FF22E2F1EBF8400DE879B /* CloudsAndSnowflakes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudsAndSnowflakes.swift; sourceTree = "<group>"; };
 		302E0D2B2F16F1460083B9EA /* PartLayerEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartLayerEditor.swift; sourceTree = "<group>"; };
 		302E0D2D2F16F6620083B9EA /* SnowRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnowRectangle.swift; sourceTree = "<group>"; };
 		302E0D302F1937030083B9EA /* PartList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartList.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				3066F7D72F11E6B60005281C /* Backgrounds */,
 				302E0D2F2F17F0780083B9EA /* Shapes */,
 				3066F7D82F129B490005281C /* PartSelector.swift */,
+				301FF22E2F1EBF8400DE879B /* CloudsAndSnowflakes.swift */,
 				302E0D302F1937030083B9EA /* PartList.swift */,
 				302E0D2B2F16F1460083B9EA /* PartLayerEditor.swift */,
 				305AC31D2F113F84009D2EC1 /* Part.swift */,
@@ -288,6 +291,7 @@
 				305AC3172F107384009D2EC1 /* DaniSnowwoman.swift in Sources */,
 				305AC3122F10458A009D2EC1 /* OriginalBackground.swift in Sources */,
 				305AC31E2F113F84009D2EC1 /* Part.swift in Sources */,
+				301FF22F2F1EBF8400DE879B /* CloudsAndSnowflakes.swift in Sources */,
 				302E0D332F1A6DB50083B9EA /* Shapes.swift in Sources */,
 				302E0D352F1A6E450083B9EA /* ChaseArtwork.swift in Sources */,
 				302E0D2C2F16F1460083B9EA /* PartLayerEditor.swift in Sources */,

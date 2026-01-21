@@ -37,10 +37,22 @@ struct App: SwiftUI.App {
 // Snow Triangle
 // Snow Rounded Rectangle
 // Snow Ellipse
-// Move forward and back buttons
 // Creator information
 // More backgrounds
 // Refactor background to work for any size
-// Make rotation gesture rotate around center
 // Make Snowperson list look better
-// Scale button is not keeping aspect ratio
+// Haptic feedback
+// Clean up part editor buttons
+
+/// App Icon
+#Preview {
+    Image(systemName: "snow")
+        .resizable()
+        .aspectRatio(contentMode: .fit)
+        .foregroundStyle(.white)
+            .frame(width: 250, height: 250)
+        .padding()
+        .padding()
+        .padding(44)
+        .background(.accent.gradient)
+}

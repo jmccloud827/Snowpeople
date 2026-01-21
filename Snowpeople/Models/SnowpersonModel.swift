@@ -1,7 +1,7 @@
 import SwiftData
 import SwiftUI
 
-@Model final class SnowpersonModel: Codable {
+@Model final class SnowpersonModel {
     var name = "Snowperson"
     var createdDate = Date.now
     var background = Background.originalDay
@@ -21,14 +21,6 @@ import SwiftUI
     
     init() {}
     
-    init(from decoder: any Decoder) throws {
-        let container: KeyedDecodingContainer = try decoder.container(keyedBy: Self.CodingKeys.self)
-        self.name = try container.decode(String.self, forKey: .name)
-        self.createdDate = try container.decode(Date.self, forKey: .createdDate)
-        self.background = try container.decode(Background.self, forKey: .background)
-        self.persistedParts = try container.decode([PartModel].self, forKey: .persistedParts)
-    }
-    
     func duplicatePart(_ part: PartModel) -> PartModel {
         let copy = PartModel(partToCopy: part)
         copy.offset = .zero
@@ -37,23 +29,50 @@ import SwiftUI
         return copy
     }
     
-    func encode(to encoder: any Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(name, forKey: .name)
-        try container.encode(createdDate, forKey: .createdDate)
-        try container.encode(background, forKey: .background)
-        try container.encode(persistedParts, forKey: .persistedParts)
+    func getPartById(_ id: ObjectIdentifier) -> PartModel? {
+        return parts.first(where: { $0.id == id })
+    }
+    
+    func getCanMovePartBackwardByID(_ id: ObjectIdentifier) -> Bool {
+        let sortedParts = persistedParts.sorted { $0.zIndex < $1.zIndex }
+        guard let index = sortedParts.firstIndex(where: { $0.id == id }) else {
+            return false
+        }
+        
+        return index > 0
+    }
+    
+    func getCanMovePartForwardByID(_ id: ObjectIdentifier) -> Bool {
+        let sortedParts = persistedParts.sorted { $0.zIndex < $1.zIndex }
+        guard let index = sortedParts.firstIndex(where: { $0.id == id }) else {
+            return false
+        }
+        
+        return index < parts.count - 1
+    }
+    
+    func movePartBackwardByID(_ id: ObjectIdentifier) {
+        let sortedParts = persistedParts.sorted { $0.zIndex < $1.zIndex }
+        let index = sortedParts.firstIndex { $0.id == id }
+        if let index, index > 0 {
+            let partToMove = sortedParts[index]
+            let partToMoveBeforeIt = sortedParts[index - 1]
+            parts.swapAt(partToMove.zIndex, partToMoveBeforeIt.zIndex)
+        }
+    }
+    
+    func movePartForwardByID(_ id: ObjectIdentifier) {
+        let sortedParts = persistedParts.sorted { $0.zIndex < $1.zIndex }
+        let index = sortedParts.firstIndex { $0.id == id }
+        if let index, index < parts.count - 1 {
+            let partToMove = sortedParts[index]
+            let partToMoveBeforeIt = sortedParts[index + 1]
+            parts.swapAt(partToMove.zIndex, partToMoveBeforeIt.zIndex)
+        }
     }
     
     enum Background: String, Codable, CaseIterable {
         case originalDay = "Original (Day)"
         case originalNight = "Original (Night)"
-    }
-    
-    enum CodingKeys: CodingKey {
-        case name
-        case createdDate
-        case background
-        case persistedParts
     }
 }
