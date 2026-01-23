@@ -60,13 +60,13 @@ struct PartEditor: View {
                             
                             deleteButton
                             
-                            flipOnYAxisButton
+                            leftWidthButton
                             
-                            duplicateButton
+                            rightWidthButton
                             
-                            widthButton
+                            topHeightButton
                             
-                            heightButton
+                            bottomHeightButton
                             
                             scaleButton
                         }
@@ -89,162 +89,95 @@ struct PartEditor: View {
     }
     
     private var deleteButton: some View {
-        Image(systemName: "trash")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .padding(.vertical, 2)
-            .frame(width: buttonSize, height: buttonSize)
-            .frame(width: buttonSize * 1.75, height: buttonSize * 1.25)
-            .onTapGesture {
-                onWillUpdate()
-                idOfPartBeingEdited = nil
-                snowperson.parts.removeAll { $0.id == part.id }
-            }
-            .background {
-                RoundedRectangle(cornerSize: .init(width: 15, height: 15))
-                    .foregroundStyle(Color(.systemGray5))
-                    .colorScheme(.light)
-            }
-            .offset(x: -buttonSize * 1.75, y: -buttonSize)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        makeBorderButton(systemName: "trash",
+                         alignment: .topLeading,
+                         gesture: TapGesture()
+                             .onEnded {
+                                 onWillUpdate()
+                                 idOfPartBeingEdited = nil
+                                 snowperson.parts.removeAll { $0.id == part.id }
+                             })
     }
     
-    private var flipOnYAxisButton: some View {
-        Image(systemName: "arrow.trianglehead.left.and.right.righttriangle.left.righttriangle.right")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .padding(.vertical, 2)
-            .frame(width: buttonSize, height: buttonSize)
-            .frame(width: buttonSize * 1.75, height: buttonSize * 1.25)
-            .onTapGesture {
-                onWillUpdate()
-                part.isFlippedOnYAxis.toggle()
-            }
-            .background {
-                RoundedRectangle(cornerSize: .init(width: 15, height: 15))
-                    .foregroundStyle(Color(.systemGray5))
-                    .colorScheme(.light)
-            }
-            .offset(x: -buttonSize * 1.75, y: buttonSize)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+    private var leftWidthButton: some View {
+        makeCircleButton(alignment: .leading,
+                         gesture: DragGesture(minimumDistance: 0)
+                             .onChanged { gesture in
+                                 currentSize.width = max(minimumSize, currentSize.width - gesture.translation.width)
+                             }
+                             .onEnded { _ in
+                                 onWillUpdate()
+                                 part.size.width = currentSize.width
+                             })
     }
     
-    private var duplicateButton: some View {
-        Image(systemName: "plus.square.on.square")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .padding(.vertical, 2)
-            .frame(width: buttonSize, height: buttonSize)
-            .frame(width: buttonSize * 1.75, height: buttonSize * 1.25)
-            .onTapGesture {
-                idOfPartBeingEdited = nil
-                let copiedPart = snowperson.duplicatePart(part)
-                idOfPartBeingEdited = copiedPart.id
-            }
-            .background {
-                RoundedRectangle(cornerSize: .init(width: 15, height: 15))
-                    .foregroundStyle(Color(.systemGray5))
-                    .colorScheme(.light)
-            }
-            .offset(x: -buttonSize * 1.75)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+    private var rightWidthButton: some View {
+        makeCircleButton(alignment: .trailing,
+                         gesture: DragGesture(minimumDistance: 0)
+                             .onChanged { gesture in
+                                 currentSize.width = max(minimumSize, currentSize.width + gesture.translation.width)
+                             }
+                             .onEnded { _ in
+                                 onWillUpdate()
+                                 part.size.width = currentSize.width
+                             })
     }
     
-    private var widthButton: some View {
-        Image(systemName: "circle")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .background(.white)
-            .clipShape(Circle())
-            .gesture(
-                DragGesture(minimumDistance: 0)
-                    .onChanged { gesture in
-                        currentSize.width = max(minimumSize, currentSize.width + gesture.translation.width)
-                    }
-                    .onEnded { _ in
-                        onWillUpdate()
-                        part.size.width = currentSize.width
-                    }
-            )
-            .frame(width: buttonSize, height: buttonSize)
-            .offset(x: buttonSize / 2)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
+    private var topHeightButton: some View {
+        makeCircleButton(alignment: .top,
+                         gesture: DragGesture(minimumDistance: 0)
+                             .onChanged { gesture in
+                                 currentSize.height = max(minimumSize, currentSize.height - gesture.translation.height)
+                             }
+                             .onEnded { _ in
+                                 onWillUpdate()
+                                 part.size.height = currentSize.height
+                             })
     }
     
-    private var heightButton: some View {
-        Image(systemName: "circle")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .background(.white)
-            .clipShape(Circle())
-            .gesture(
-                DragGesture(minimumDistance: 0)
-                    .onChanged { gesture in
-                        currentSize.height = max(minimumSize, currentSize.height - gesture.translation.height)
-                    }
-                    .onEnded { _ in
-                        onWillUpdate()
-                        part.size.height = currentSize.height
-                    }
-            )
-            .frame(width: buttonSize, height: buttonSize)
-            .offset(y: -buttonSize / 2)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+    private var bottomHeightButton: some View {
+        makeCircleButton(alignment: .bottom,
+                         gesture: DragGesture(minimumDistance: 0)
+                             .onChanged { gesture in
+                                 currentSize.height = max(minimumSize, currentSize.height + gesture.translation.height)
+                             }
+                             .onEnded { _ in
+                                 onWillUpdate()
+                                 part.size.height = currentSize.height
+                             })
     }
     
     private var scaleButton: some View {
-        Image(systemName: "arrow.up.left.and.arrow.down.right")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .gesture(
-                DragGesture(minimumDistance: 0)
-                    .onChanged { gesture in
-                        let maxTranslation = max(gesture.translation.width, gesture.translation.height)
-                            
-                        let magnification = 1 + maxTranslation / max(part.size.width, part.size.height)
-                        
-                        if currentSize.width * magnification < minimumSize || currentSize.height * magnification < minimumSize {
-                            return
-                        }
-                            
-                        currentScale = magnification
-                    }
-                    .onEnded { gesture in
-                        onWillUpdate()
-                        
-                        currentSize.width *= currentScale
-                        currentSize.height *= currentScale
-                        
-                        currentScale = 1
-                        part.size = currentSize
-                    }
-            )
-            .padding(.vertical, 2)
-            .frame(width: buttonSize, height: buttonSize)
-            .frame(width: buttonSize * 1.75, height: buttonSize * 1.25)
-            .background {
-                RoundedRectangle(cornerSize: .init(width: 15, height: 15))
-                    .foregroundStyle(Color(.systemGray5))
-                    .colorScheme(.light)
-            }
-            .offset(x: buttonSize * 1.75, y: buttonSize)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+        makeBorderButton(systemName: "arrow.up.left.and.arrow.down.right",
+                         alignment: .bottomTrailing,
+                         gesture: DragGesture(minimumDistance: 0)
+                             .onChanged { gesture in
+                                 let maxTranslation = max(gesture.translation.width, gesture.translation.height)
+                    
+                                 let magnification = 1 + maxTranslation / max(part.size.width, part.size.height)
+                
+                                 if currentSize.width * magnification < minimumSize || currentSize.height * magnification < minimumSize {
+                                     return
+                                 }
+                    
+                                 currentScale = magnification
+                             }
+                             .onEnded { _ in
+                                 onWillUpdate()
+                
+                                 currentSize.width *= currentScale
+                                 currentSize.height *= currentScale
+                
+                                 currentScale = 1
+                                 part.size = currentSize
+                             })
     }
     
     private var rotateButton: some View {
-        Image(systemName: "arrow.trianglehead.counterclockwise.rotate.90")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .padding(.vertical, 2)
-            .frame(width: buttonSize, height: buttonSize)
-            .frame(width: buttonSize * 1.75, height: buttonSize * 1.25)
-            .background {
-                RoundedRectangle(cornerSize: .init(width: 15, height: 15))
-                    .foregroundStyle(Color(.systemGray5))
-                    .colorScheme(.light)
-            }
-            .offset(x: buttonSize * 1.75, y: -buttonSize)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+        let g: DragGesture? = nil
+        return makeBorderButton(systemName: "arrow.trianglehead.counterclockwise.rotate.90",
+                                alignment: .topTrailing,
+                                gesture: g)
             .rotationEffect(currentRotation)
             .gesture(
                 DragGesture(minimumDistance: 0)
@@ -326,6 +259,82 @@ struct PartEditor: View {
                         part.rotation = currentRotation
                     }
             )
+    }
+    
+    private func makeBorderButton(systemName: String, alignment: Alignment, gesture: (some Gesture)?) -> some View {
+        Image(systemName: systemName)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .padding(.vertical, 2)
+            .frame(width: buttonSize, height: buttonSize)
+            .frame(width: buttonSize * 1.75, height: buttonSize * 1.25)
+            .background {
+                RoundedRectangle(cornerSize: .init(width: 15, height: 15))
+                    .foregroundStyle(Color(.systemGray5))
+                    .colorScheme(.light)
+            }
+            .offset(getButtonOffsets(for: alignment))
+            .gesture(gesture)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
+    }
+    
+    private func getButtonOffsets(for alignment: Alignment) -> CGSize {
+        let width: Double =
+            if [Alignment.topLeading, Alignment.leading, Alignment.bottomLeading].contains(alignment) {
+                -buttonSize * 1.75
+            } else if [Alignment.topTrailing, Alignment.trailing, Alignment.bottomTrailing].contains(alignment) {
+                buttonSize * 1.75
+            } else {
+                0
+            }
+        
+        let height: Double =
+            if [Alignment.topLeading, Alignment.top, Alignment.topTrailing].contains(alignment) {
+                -buttonSize
+            } else if [Alignment.bottomLeading, Alignment.bottom, Alignment.bottomTrailing].contains(alignment) {
+                buttonSize
+            } else {
+                0
+            }
+        
+        return .init(width: width, height: height)
+    }
+    
+    private func makeCircleButton(alignment: CircleButtonAlignment, gesture: some Gesture) -> some View {
+        Image(systemName: "circle")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .background(.white)
+            .clipShape(Circle())
+            .frame(width: buttonSize, height: buttonSize)
+            .offset(alignment.getOffset(buttonSize: buttonSize))
+            .gesture(gesture)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment.asAlignment)
+    }
+    
+    private enum CircleButtonAlignment {
+        case top
+        case bottom
+        case leading
+        case trailing
+        
+        var asAlignment: Alignment {
+            switch self {
+            case .top: return .top
+            case .bottom: return .bottom
+            case .leading: return .leading
+            case .trailing: return .trailing
+            }
+        }
+        
+        func getOffset(buttonSize: Double) -> CGSize {
+            switch self {
+            case .top: return .init(width: 0, height: -buttonSize / 2)
+            case .bottom: return .init(width: 0, height: buttonSize / 2)
+            case .leading: return .init(width: -buttonSize / 2, height: 0)
+            case .trailing: return .init(width: buttonSize / 2, height: 0)
+            }
+        }
     }
 }
 
