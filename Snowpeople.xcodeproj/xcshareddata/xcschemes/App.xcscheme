@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3072F1502F0EB9A300A5EAA2"
-               BuildableName = "Snowpeople.app"
-               BlueprintName = "Snowpeople"
+               BuildableName = "App.app"
+               BlueprintName = "App"
                ReferencedContainer = "container:Snowpeople.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3072F1502F0EB9A300A5EAA2"
-            BuildableName = "Snowpeople.app"
-            BlueprintName = "Snowpeople"
+            BuildableName = "App.app"
+            BlueprintName = "App"
             ReferencedContainer = "container:Snowpeople.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3072F1502F0EB9A300A5EAA2"
-            BuildableName = "Snowpeople.app"
-            BlueprintName = "Snowpeople"
+            BuildableName = "App.app"
+            BlueprintName = "App"
             ReferencedContainer = "container:Snowpeople.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -74,7 +74,7 @@
 		3066F7C42F11889C0005281C /* Snowperson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snowperson.swift; sourceTree = "<group>"; };
 		3066F7C62F1189290005281C /* SnowpersonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnowpersonList.swift; sourceTree = "<group>"; };
 		3066F7D02F1195700005281C /* ImageLayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLayerModel.swift; sourceTree = "<group>"; };
-		3066F7D22F11A8520005281C /* Snowpeople.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snowpeople.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3066F7D22F11A8520005281C /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3066F7D52F11E14E0005281C /* BrookeSnowwoman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrookeSnowwoman.swift; sourceTree = "<group>"; };
 		3066F7D82F129B490005281C /* PartSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartSelector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,16 +190,16 @@
 			isa = PBXGroup;
 			children = (
 				305AC3032F10458A009D2EC1 /* Snowpeople */,
-				3066F7D22F11A8520005281C /* Snowpeople.app */,
+				3066F7D22F11A8520005281C /* App.app */,
 			);
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3072F1502F0EB9A300A5EAA2 /* Snowpeople */ = {
+		3072F1502F0EB9A300A5EAA2 /* App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3072F15C2F0EB9A400A5EAA2 /* Build configuration list for PBXNativeTarget "Snowpeople" */;
+			buildConfigurationList = 3072F15C2F0EB9A400A5EAA2 /* Build configuration list for PBXNativeTarget "App" */;
 			buildPhases = (
 				3072F14D2F0EB9A300A5EAA2 /* Sources */,
 				3072F14E2F0EB9A300A5EAA2 /* Frameworks */,
@@ -209,11 +209,11 @@
 			);
 			dependencies = (
 			);
-			name = Snowpeople;
+			name = App;
 			packageProductDependencies = (
 			);
 			productName = Snowman;
-			productReference = 3066F7D22F11A8520005281C /* Snowpeople.app */;
+			productReference = 3066F7D22F11A8520005281C /* App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -245,7 +245,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3072F1502F0EB9A300A5EAA2 /* Snowpeople */,
+				3072F1502F0EB9A300A5EAA2 /* App */,
 			);
 		};
 /* End PBXProject section */
@@ -433,12 +433,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2536M8SB5Z;
+				DEVELOPMENT_TEAM = JY83NY58JG;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				"INFOPLIST_KEY_CFBundleDisplayName[sdk=iphoneos*]" = Snowpeople;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -454,7 +456,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jmccloud827.Snowpeople;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jmccloudmccloud.Snowpeople;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -480,12 +482,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2536M8SB5Z;
+				DEVELOPMENT_TEAM = JY83NY58JG;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				"INFOPLIST_KEY_CFBundleDisplayName[sdk=iphoneos*]" = Snowpeople;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -501,7 +505,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jmccloud827.Snowpeople;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jmccloudmccloud.Snowpeople;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -532,7 +536,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3072F15C2F0EB9A400A5EAA2 /* Build configuration list for PBXNativeTarget "Snowpeople" */ = {
+		3072F15C2F0EB9A400A5EAA2 /* Build configuration list for PBXNativeTarget "App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3072F15D2F0EB9A400A5EAA2 /* Debug */,
