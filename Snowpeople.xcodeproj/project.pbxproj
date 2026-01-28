@@ -74,7 +74,7 @@
 		3066F7C42F11889C0005281C /* Snowperson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snowperson.swift; sourceTree = "<group>"; };
 		3066F7C62F1189290005281C /* SnowpersonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnowpersonList.swift; sourceTree = "<group>"; };
 		3066F7D02F1195700005281C /* ImageLayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLayerModel.swift; sourceTree = "<group>"; };
-		3066F7D22F11A8520005281C /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3066F7D22F11A8520005281C /* Snowpeople: Build and Decorate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Snowpeople: Build and Decorate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3066F7D52F11E14E0005281C /* BrookeSnowwoman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrookeSnowwoman.swift; sourceTree = "<group>"; };
 		3066F7D82F129B490005281C /* PartSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartSelector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,7 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				305AC3032F10458A009D2EC1 /* Snowpeople */,
-				3066F7D22F11A8520005281C /* App.app */,
+				3066F7D22F11A8520005281C /* Snowpeople: Build and Decorate.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -213,7 +213,7 @@
 			packageProductDependencies = (
 			);
 			productName = Snowman;
-			productReference = 3066F7D22F11A8520005281C /* App.app */;
+			productReference = 3066F7D22F11A8520005281C /* Snowpeople: Build and Decorate.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -458,7 +458,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 26.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jmccloudmccloud.Snowpeople;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Snowpeople: Build and Decorate";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -508,7 +508,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 26.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jmccloudmccloud.Snowpeople;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Snowpeople: Build and Decorate";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
