@@ -40,6 +40,7 @@
 		3066F7D12F1195700005281C /* ImageLayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3066F7D02F1195700005281C /* ImageLayerModel.swift */; };
 		3066F7D62F11E14E0005281C /* BrookeSnowwoman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3066F7D52F11E14E0005281C /* BrookeSnowwoman.swift */; };
 		3066F7D92F129B490005281C /* PartSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3066F7D82F129B490005281C /* PartSelector.swift */; };
+		309C11E12F361D0E00EFD143 /* NancySnowwoman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309C11E02F361D0E00EFD143 /* NancySnowwoman.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		3066F7D22F11A8520005281C /* Snowpeople: Build and Decorate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Snowpeople: Build and Decorate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3066F7D52F11E14E0005281C /* BrookeSnowwoman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrookeSnowwoman.swift; sourceTree = "<group>"; };
 		3066F7D82F129B490005281C /* PartSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartSelector.swift; sourceTree = "<group>"; };
+		309C11E02F361D0E00EFD143 /* NancySnowwoman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NancySnowwoman.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				305AC3162F107384009D2EC1 /* DaniSnowwoman.swift */,
 				3066F7D52F11E14E0005281C /* BrookeSnowwoman.swift */,
 				302E0D342F1A6E450083B9EA /* ChaseArtwork.swift */,
+				309C11E02F361D0E00EFD143 /* NancySnowwoman.swift */,
 			);
 			path = "Sample Snowpeople";
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				3066F7D92F129B490005281C /* PartSelector.swift in Sources */,
 				3066F7C72F1189290005281C /* SnowpersonList.swift in Sources */,
 				302E0D2E2F16F6620083B9EA /* SnowRectangle.swift in Sources */,
+				309C11E12F361D0E00EFD143 /* NancySnowwoman.swift in Sources */,
 				305AC30F2F10458A009D2EC1 /* App.swift in Sources */,
 				3066F7D12F1195700005281C /* ImageLayerModel.swift in Sources */,
 				305AC3102F10458A009D2EC1 /* Neckwear.swift in Sources */,

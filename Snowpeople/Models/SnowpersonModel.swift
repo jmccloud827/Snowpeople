@@ -71,6 +71,35 @@ import SwiftUI
         }
     }
     
+    func printToConsole() {
+        self.parts.forEach { part in
+            if let image = part.image {
+                print("Image: ")
+                print("  ResourceName: \(image.resourceName)")
+                print("  Color: \(image.color)")
+                image.layers.forEach { layer in
+                    print("    Layer: \(layer.number)")
+                    if let color = layer.color {
+                        print("    Color: \(color)")
+                    }
+                }
+            }
+            if let shape = part.shape {
+                print("Shape: ")
+                print("  Type: \(shape.type)")
+                print("  Color: \(shape.color)")
+            }
+            print("Size: \(part.size)")
+            print("Offset: \(part.offset)")
+            print("Rotation: \(part.rotation)")
+            print("IsFlippedOnYAxis: \(part.isFlippedOnYAxis)")
+            print("Z-Index: \(part.zIndex)")
+            print("-----")
+        }
+    }
+    
+    @MainActor static let samples: [SnowpersonModel] = [.brooke, .dani, .chase, .nancy]
+    
     enum Background: String, Codable, CaseIterable {
         case originalDay = "Original (Day)"
         case originalNight = "Original (Night)"

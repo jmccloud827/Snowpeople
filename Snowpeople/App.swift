@@ -25,9 +25,7 @@ struct App: SwiftUI.App {
                                             ShapeModel.self,
                                             configurations: config)
         
-        container.mainContext.insert(SnowpersonModel.dani)
-        container.mainContext.insert(SnowpersonModel.brooke)
-        container.mainContext.insert(SnowpersonModel.chase)
+        SnowpersonModel.samples.forEach { container.mainContext.insert($0) }
         
         return container
     }

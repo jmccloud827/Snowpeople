@@ -46,16 +46,10 @@ struct SnowpersonList: View {
         NavigationStack {
             List {
                 Section("My friend's and family's snowpeople") {
-                    NavigationLink("Brooke") {
-                        Snowperson(snowperson: .brooke, canEdit: false)
-                    }
-                    
-                    NavigationLink("Dani") {
-                        Snowperson(snowperson: .dani, canEdit: false)
-                    }
-                    
-                    NavigationLink("Chase") {
-                        Snowperson(snowperson: .chase, canEdit: false)
+                    ForEach(SnowpersonModel.samples, id: \.id) { snowperson in
+                        NavigationLink(snowperson.name) {
+                            Snowperson(snowperson: snowperson, canEdit: false)
+                        }
                     }
                 }
             }
