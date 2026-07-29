@@ -150,7 +150,7 @@ private struct Snowflake: Identifiable {
     init(size: CGSize) {
         let percentage = Double.random(in: 0 ... 1)
         let initialValues = Self.getRandomValues(size: size)
-        self.start = .init(x: initialValues.start.x + (initialValues.end.x - initialValues.end.x) * percentage, y: initialValues.end.y * percentage)
+        self.start = .init(x: initialValues.start.x + (initialValues.end.x - initialValues.start.x) * percentage, y: initialValues.start.y + (initialValues.end.y - initialValues.start.y) * percentage)
         self.end = initialValues.end
         self.size = initialValues.size
         self.duration = initialValues.duration * (1.0 - percentage)

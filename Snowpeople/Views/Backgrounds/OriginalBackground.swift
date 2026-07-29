@@ -1,14 +1,10 @@
-import Combine
 import SwiftUI
 
 struct OriginalBackground: View {
     let isNight: Bool
-    
-    @State var frame = CGSize.zero
+
     private let groundHeight = 100.0
-    
-    private let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
-    
+
     var body: some View {
         GeometryReader { g in
             ZStack(alignment: .bottom) {
